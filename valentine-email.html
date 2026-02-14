@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Email</title>
+    <title>Valentine's Day</title>
     <style>
-        .button-container {
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
             display: flex;
-            flex-direction: column; /* Stack Yes and No buttons vertically */
+            flex-direction: column; /* Stacked vertically */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <div class="button-container">
+    <div class="container">
+        <h1>Happy Valentine's Day!</h1>
+        <p>Do you want to be my Valentine?</p>
         <button>Yes</button>
         <button>No</button>
     </div>
