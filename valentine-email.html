@@ -1,1 +1,111 @@
-<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Valentine's Email</title>\n    <style>\n        body {\n            background-color: #fff;\n            color: #333;\n            text-align: center;\n            font-family: Arial, sans-serif;\n        }\n        .heart {\n            position: absolute;\n            bottom: 100%;\n            font-size: 2em;\n            animation: fall 5s infinite;\n        }\n        @keyframes fall {\n            from {\n                transform: translateY(0);\n            }\n            to {\n                transform: translateY(100vh);\n                opacity: 0;\n            }\n        }\n    </style>\n</head>\n<body>\n    <h1>Happy Valentine's Day!</h1>\n    <button id=\"yesButton\">Yes</button>\n    <div id=\"fallingEmojis\"></div>\n    <script>\n        document.getElementById('yesButton').addEventListener('click', function() {\n            for (let i = 0; i < 10; i++) {\n                let heart = document.createElement('div');\n                heart.innerHTML = '💖';\n                heart.classList.add('heart');\n                heart.style.left = Math.random() * 100 + 'vw';\n                heart.style.animationDuration = Math.random() * 5 + 2 + 's';\n                document.getElementById('fallingEmojis').appendChild(heart);\n            }\n            for (let i = 0; i < 10; i++) {\n                let kissEmoji = document.createElement('div');\n                kissEmoji.innerHTML = '😘';\n                kissEmoji.classList.add('heart');\n                kissEmoji.style.left = Math.random() * 100 + 'vw';\n                kissEmoji.style.animationDuration = Math.random() * 5 + 2 + 's';\n                document.getElementById('fallingEmojis').appendChild(kissEmoji);\n            }\n        });\n    <\/script>\n</body>\n</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #ffb6d9;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffb6d9 0%, #ffc0cb 100%);
+        }
+        h1 {
+            color: #d63384;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #c2185b;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #yesBtn {
+            background-color: #ff1493;
+            color: white;
+            font-weight: bold;
+        }
+        #yesBtn:hover {
+            background-color: #c2185b;
+            transform: scale(1.1);
+        }
+        #noBtn {
+            background-color: #fff;
+            color: #ff1493;
+            border: 2px solid #ff1493;
+            position: relative;
+        }
+        .falling-emoji {
+            position: fixed;
+            font-size: 60px;
+            pointer-events: none;
+            animation: fall 3s linear forwards;
+            z-index: 1000;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Valentine's Day!</h1>
+        <p>Do you want to be my Valentine?</p>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        
+        noBtn.addEventListener('mouseover', function() {
+            const randomX = Math.random() * (window.innerWidth - 100);
+            const randomY = Math.random() * (window.innerHeight - 100);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+
+        yesBtn.addEventListener('click', function() {
+            // Create falling hearts and kisses
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.classList.add('falling-emoji');
+                    emoji.textContent = Math.random() > 0.5 ? '💕' : '😘';
+                    emoji.style.left = Math.random() * window.innerWidth + 'px';
+                    emoji.style.top = '-60px';
+                    document.body.appendChild(emoji);
+                    
+                    // Remove element after animation completes
+                    setTimeout(() => {
+                        emoji.remove();
+                    }, 3000);
+                }, i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
